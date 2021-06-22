@@ -52,7 +52,10 @@ public class BoardController {
 //		model.addAttribute("list2",service2.getList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}
-	
+	@GetMapping("/main")
+	public void main() {
+		log.info("종인이 형꺼?");
+	}
 	
 	
 	
