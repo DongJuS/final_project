@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +15,11 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/slick/slick-theme.css" />
 
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 
 
 <style>
@@ -248,9 +258,10 @@
 #autoMaker>div:hover {
 	background: #e6d1ff;
 }
-#count{
-border-bottom:1px solid black;
-height:50px;
+
+#count {
+	border-bottom: 1px solid black;
+	height: 50px;
 }
 </style>
 </head>
@@ -272,14 +283,16 @@ height:50px;
 				<img class="logotext" src="/resources/proimg/logotext2.png">
 			</div>
 		</div>
+
 		<div class="top_bottom">
 			<form action="index">
 
 
 				<input id="search_bar" type="text" name="search"
-					placeholder=" 가지고 계신 식재료를 입력해 주세요!"><span class="icon"><i class="fa fa-search"></i></span>
+					placeholder=" 가지고 계신 식재료를 입력해 주세요!"><span class="icon"><i
+					class="fa fa-search"></i></span>
 				<div id="autoMaker"></div>
-				
+
 				<div id="search_area"
 					style="width: 300px; height: 100px; background-color: white;">1234</div>
 
@@ -287,12 +300,13 @@ height:50px;
 			</form>
 		</div>
 	</div>
-	<!-- 헤더 -->
-	
-	<div id="count">
-총 개의 레시피가 검색되었습니다.
+	<!-- =======================헤더============================ -->
 
-	
+	<div id="count">
+		총
+		<c:out value='${pageMaker.total }' />
+		개의 레시피가 검색되었습니다.
+
 	</div>
 	<!-- 검색 갯수 -->
 	<div class="main_bottom_container">
@@ -310,67 +324,73 @@ height:50px;
 						class="cttIcon b_r next" style="top: 353px;"
 						src="/resources/proimg/nexticon.png"></i>
 				</div>
-				<div class="page-wrapper" style="position: relative;">
-					<!--page slider -->
-					<div class="post-slider">
 
-						<div class="post-wrapper">
-							<div class="post">
-								<img src="/resources/proimg/star.png" class="slider-image">
-								<div class="post-info">
-									<h4>
-										<a href="#" class="post-subject">김치볶음밥 </a>
-									</h4>
-								</div>
-							</div>
-							<div class="post">
-								<img src="/resources/proimg/star.png" class="slider-image">
-								<div class="post-info">
-									<h4>
-										<a href="#"> 계란말이 </a>
-									</h4>
-								</div>
-							</div>
-							<div class="post">
-								<img src="/resources/proimg/star.png" class="slider-image">
-								<div class="post-info">
-									<h4>
-										<a href="#">간장공장공장장 </a>
-									</h4>
 
-								</div>
-							</div>
-							<div class="post">
-								<img src="/resources/proimg/star.png" class="slider-image">
-								<div class="post-info">
-									<h4>
-										<a href="#">캐러셀개헬</a>
-									</h4>
+				
+					<div class="page-wrapper" style="position: relative;">
+						<!--page slider -->
+						<div class="post-slider">
 
+							<div class="post-wrapper">
+							<c:forEach var="board" items="${list }">
+								<div class="post">
+									<img src="${board.img }" class="slider-image">
+									<div class="post-info">
+										<h4>
+											<a href="#" class="post-subject">김치볶음밥 </a>
+										</h4>
+									</div>
 								</div>
-							</div>
-							<div class="post">
-								<img src="/resources/proimg/star.png" class="slider-image">
-								<div class="post-info">
-									<h4>
-										<a href="#">믿을수없어</a>
-									</h4>
+								</c:forEach>
+								<div class="post">
+									<img src="/resources/proimg/star.png" class="slider-image">
+									<div class="post-info">
+										<h4>
+											<a href="#"> 계란말이 </a>
+										</h4>
+									</div>
+								</div>
+								<div class="post">
+									<img src="/resources/proimg/star.png" class="slider-image">
+									<div class="post-info">
+										<h4>
+											<a href="#">간장공장공장장 </a>
+										</h4>
 
+									</div>
+								</div>
+								<div class="post">
+									<img src="/resources/proimg/star.png" class="slider-image">
+									<div class="post-info">
+										<h4>
+											<a href="#">캐러셀개헬</a>
+										</h4>
+
+									</div>
+								</div>
+								<div class="post">
+									<img src="/resources/proimg/star.png" class="slider-image">
+									<div class="post-info">
+										<h4>
+											<a href="#">믿을수없어</a>
+										</h4>
+
+									</div>
+								</div>
+								<div class="post">
+									<img src="/resources/proimg/star.png" class="slider-image">
+									<div class="post-info">
+										<h4>
+											<a href="#">뽀잉</a>
+										</h4>
+									</div>
 								</div>
 							</div>
-							<div class="post">
-								<img src="/resources/proimg/star.png" class="slider-image">
-								<div class="post-info">
-									<h4>
-										<a href="#">뽀잉</a>
-									</h4>
-								</div>
-							</div>
+							
 						</div>
+						<!--post slider-->
 					</div>
-					<!--post slider-->
-				</div>
-
+				
 
 
 
@@ -392,7 +412,7 @@ height:50px;
 					<div class="post-slider">
 
 						<div class="post-wrapper2">
-							<div class="post">
+							<div class=".post">
 								<img src="/resources/proimg/star.png" class="slider-image">
 								<div class="post-info">
 									<h4>

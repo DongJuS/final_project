@@ -12,6 +12,7 @@ import org.conan.domain.Criteria;
 import org.conan.domain.PageDTO;
 import org.conan.service.BoardService;
 import org.conan.service.BoardService2;
+import org.conan.service.RecipeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,8 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	private BoardService service;
 	private BoardService2 service2;
-
+	private RecipeService Re_service;
+	
 	@GetMapping("/list") 
 	public void list(Criteria cri, Model model) {
 		log.info("list : "+cri);
@@ -53,8 +55,13 @@ public class BoardController {
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}
 	@GetMapping("/main")
-	public void main() {
+	public void main(Criteria cri, Model model) {
+		 model.addAttribute("list", Re_service.getList()); 
 		log.info("종인이 형꺼?");
+		int total=Re_service.getTotal(cri);
+		log.info("total : "+ total);	
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		
 	}
 	
 	
