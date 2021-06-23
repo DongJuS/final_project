@@ -63,8 +63,21 @@ public class BoardController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 	}
+	@GetMapping("/get_reci")
+	public void get_reci(@RequestParam("rid") Long rid, @ModelAttribute("cri") Criteria cri, Model model) {
+		log.info("/get or /modify");
 	
-	
+//		model.addAttribute("recipe",Re_service.get(rid));
+//		model.addAttribute("ingre", Re_service.get1(rid));
+//		model.addAttribute("proce", Re_service.get2(rid));
+	}
+	@GetMapping("/r_get")
+	public void get(@RequestParam("rid") Long rid, Model model ) {
+		log.info("/get");
+		model.addAttribute("recipe",Re_service.get(rid));
+		model.addAttribute("ingre", Re_service.get1(rid));
+		model.addAttribute("proce", Re_service.get2(rid));
+	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")

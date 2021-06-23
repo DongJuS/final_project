@@ -30,6 +30,14 @@ where bno =#{bno}
 		select * from t_recipe where
 		rid=${rid}
 	</select>
+		<select id="read1" resultType="org.conan.domain.IngreVO">
+		select * from t_ingre where
+		rid=#{rid}
+	</select>
+	<select id='read2' resultType='org.conan.domain.ProceVO'>
+		select * from t_proce where
+		rid=#{rid}
+	</select>
 
 	<delete id="delete">
 		delete from tbl_board where bno=#{bno}

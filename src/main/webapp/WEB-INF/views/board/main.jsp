@@ -337,7 +337,7 @@
 									<img src="${board.img }" class="slider-image">
 									<div class="post-info">
 										<h4>
-											<a href="#" class="post-subject">김치볶음밥 </a>
+											<a href="#" class="post-subject">"${board.name } </a>
 										</h4>
 									</div>
 								</div>
@@ -350,51 +350,15 @@
 										</h4>
 									</div>
 								</div>
-								<div class="post">
-									<img src="/resources/proimg/star.png" class="slider-image">
-									<div class="post-info">
-										<h4>
-											<a href="#">간장공장공장장 </a>
-										</h4>
 
-									</div>
-								</div>
-								<div class="post">
-									<img src="/resources/proimg/star.png" class="slider-image">
-									<div class="post-info">
-										<h4>
-											<a href="#">캐러셀개헬</a>
-										</h4>
-
-									</div>
-								</div>
-								<div class="post">
-									<img src="/resources/proimg/star.png" class="slider-image">
-									<div class="post-info">
-										<h4>
-											<a href="#">믿을수없어</a>
-										</h4>
-
-									</div>
-								</div>
-								<div class="post">
-									<img src="/resources/proimg/star.png" class="slider-image">
-									<div class="post-info">
-										<h4>
-											<a href="#">뽀잉</a>
-										</h4>
-									</div>
-								</div>
 							</div>
 							
 						</div>
 						<!--post slider-->
 					</div>
-				
-
-
-
 			</div>
+<p></p>
+
 			<div class="situational_recommend">
 
 				<div class="best_text">
@@ -482,7 +446,7 @@
 
 
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function() {		
 			$('.post-wrapper').slick({
 				slidesToShow : 4,
 				slidesToScroll : 2,
