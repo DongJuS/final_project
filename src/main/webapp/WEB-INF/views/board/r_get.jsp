@@ -27,6 +27,24 @@ li {
 <title>Insert title here</title>
 </head>
 <body>
+<script>
+   $(document).ready(function() {
+       $("#like").on("click",function(e){
+    	   
+
+    	   
+    	   
+       }
+       
+       $("#dislike").on("click",function(e){
+
+    	   
+    	   
+    	   
+       }      
+   }
+	   </script>
+
 	<header class="pt-5">
 		<jsp:include page="../include2/topLayout.jsp" flush="false" />
 	</header>
@@ -80,8 +98,9 @@ li {
 		<div class='row'>
 			<div>
 				<form>
-					<button type="button" class="btn btn-primary">맛있어</button>
-					<button type="button" class="btn btn-danger">난별로</button>
+					<button id="like" type="button" class="btn btn-primary">
+					<span onclick="location.href='/board/prefer/${p.id}'">맛있어</span></button>
+					<button id="dislike" type="button" class="btn btn-danger">난별로</button>
 				</form>
 			</div>
 		</div>
@@ -129,5 +148,10 @@ li {
 			</ul>
 		</div>
 	</div>
+	
+	
+	
+	
+	
 </body>
 </html>
