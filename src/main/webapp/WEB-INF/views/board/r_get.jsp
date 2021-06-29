@@ -76,13 +76,13 @@ li {
 
         if(heartval>0) {
             console.log(heartval);
-            $("#heart").prop("src", "/resources/img/attach.png");
-            $(".heart").prop('name',heartval)
+            $("#heart").attr("src", "/resources/img/attach.png");
+            $(".heart").attr('name',heartval)
         }
         else {
             console.log(heartval);
-            $("#heart").prop("src", "/resources/img/heart.png");
-            $(".heart").prop('name',heartval)
+            $("#heart").attr("src", "/resources/img/heart.png");
+            $(".heart").attr('name',heartval)
         }
 
         $(".heart").on("click", function () {
@@ -90,6 +90,7 @@ li {
             var that = $(".heart");
 
             var sendData = {'Rid' : '${IngreVO.Rid}','heart' : that.prop('name')};
+            
             $.ajax({
                 url :'/board/heart',
                 type :'POST',
@@ -97,14 +98,14 @@ li {
                 success : function(data){
                     that.prop('name',data);
                     if(data==1) {
-                        $('#heart').prop("src","/resources/img/attach.png");
+                        $('#heart').attr("src","/resources/img/attach.png");
                     }
                     else{
-                        $('#heart').prop("src","/resources/img/heart.png");
+                        $('#heart').attr("src","/resources/img/heart.png");
                     }
 
 
-                }
+                };
             });
         });
     });

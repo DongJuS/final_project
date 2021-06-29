@@ -217,10 +217,11 @@ if(board.getAttachList()!=null) {
         int boardlike = service3.getBoardLike(vo);
         System.out.println(boardlike);
 
-        model.addAttribute("heart",boardlike);
+        model.addAttribute("heart", boardlike);
+        
     }
 
-   @ResponseBody
+    @ResponseBody
     @RequestMapping(value = "/heart", method = RequestMethod.POST, produces = "application/json")
     public int heart(HttpServletRequest httpRequest) throws Exception {
 
