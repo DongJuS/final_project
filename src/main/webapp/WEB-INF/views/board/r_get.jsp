@@ -27,6 +27,7 @@ li {
 <title>Insert title here</title>
 </head>
 <body>
+
 	<header class="pt-5">
 		<jsp:include page="../include2/topLayout.jsp" flush="false" />
 	</header>
@@ -35,7 +36,7 @@ li {
 			<img src='<c:out value="${recipe.img }"/>' width='600px'>
 		</div>
 		<div id='view1'>
-			<img src='/resources/img/장미.jpg' class="rounded-circle" width='100px'
+			<img src='/resources/img/heart.png' class="rounded-circle" width='100px'
 				height='100px'><br> <span>유저 닉네임(유저 아이디)</span>
 		</div>
 		<div id='view1'>
@@ -59,6 +60,57 @@ li {
 				</c:forEach>
 			</table>
 		</div>
+		
+<h2>연습 좋아요</h2>
+  <div style="text-align: right;">
+       <a class="btn btn-outline-dark heart">
+           <img id="heart" src="">
+       </a>
+   </div>
+
+
+<script>
+    $(document).ready(function () {
+
+        var heartval = ${heart};
+
+        if(heartval>0) {
+            console.log(heartval);
+            $("#heart").prop("src", "/resources/img/attach.png");
+            $(".heart").prop('name',heartval)
+        }
+        else {
+            console.log(heartval);
+            $("#heart").prop("src", "/resources/img/heart.png");
+            $(".heart").prop('name',heartval)
+        }
+
+        $(".heart").on("click", function () {
+
+            var that = $(".heart");
+
+            var sendData = {'Rid' : '${IngreVO.Rid}','heart' : that.prop('name')};
+            $.ajax({
+                url :'/board/heart',
+                type :'POST',
+                data : sendData,
+                success : function(data){
+                    that.prop('name',data);
+                    if(data==1) {
+                        $('#heart').prop("src","/resources/img/attach.png");
+                    }
+                    else{
+                        $('#heart').prop("src","/resources/img/heart.png");
+                    }
+
+
+                }
+            });
+        });
+    });
+</script>
+		
+		
 		<div id='detail_step'>
 			<div>
 				<b>[조리과정]</b> <span>steps</span>
@@ -80,8 +132,9 @@ li {
 		<div class='row'>
 			<div>
 				<form>
-					<button type="button" class="btn btn-primary">맛있어</button>
-					<button type="button" class="btn btn-danger">난별로</button>
+					<button id="like" type="button" class="btn btn-primary">
+					<span onclick="location.href='/board/prefer/${p.id}'">맛있어</span></button>
+					<button id="dislike" type="button" class="btn btn-danger">난별로</button>
 				</form>
 			</div>
 		</div>
@@ -129,5 +182,10 @@ li {
 			</ul>
 		</div>
 	</div>
+	
+	
+	
+	
+	
 </body>
 </html>

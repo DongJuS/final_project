@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.conan.mapper.LikeMapper">
+
+
+        <!-- boardLike -->
+
+        <insert id="insertSelectKey">
+            INSERT INTO t_ingre (rid, t_id)
+            VALUES (#{rid}, #{t_id})
+        </insert>
+
+        <delete id="deleteBoardLike">
+            DELETE FROM t_ingre
+            WHERE rid = #{rid} AND t_id = #{t_id}
+        </delete>
+
+        <select id="updateBoardLike">
+            UPDATE t_ingre
+            SET
+            boardLikeCnt = (SELECT COUNT(*)
+            FROM t_ingre
+            WHERE rid = #{rid})
+            WHERE rid = #{rid}
+        </select>
+
+        <select id="getBoardLike" resultType="int">
+            SELECT COUNT(boardLikeCnt) FROM t_ingre WHERE rid = #{rid} AND t_id = #{t_id}
+        </select>
+
+
+</mapper>

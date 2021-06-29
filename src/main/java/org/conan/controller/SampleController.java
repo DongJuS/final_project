@@ -4,8 +4,6 @@ package org.conan.controller;
 import org.conan.domain.Criteria;
 import org.conan.domain.PageDTO;
 import org.conan.service.BoardService;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,12 +39,10 @@ public class SampleController {
 		log.info("logined admin");
 
 	}
-@PreAuthorize("hasAnyRole('ROLE_ADMIN',' ROLE_MEMBER')")
 @GetMapping("/annoMember")
 	public void doMember2() {
 		log.info("어노테이션 멤버로 로그인");
 	}
-	@Secured({"ROLE_ADMIN"})
 	@GetMapping("/annoAdmin")
 	public void doAdmin2() {
 		log.info("어노테이션 어드민민");
