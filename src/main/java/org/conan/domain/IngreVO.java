@@ -8,4 +8,8 @@ public class IngreVO {
 	private String Ingre_name;
 	private String Ingre_count;
 	private String Ingre_unit;
+	private int T_id;
+	private int BoardLikeCnt;
+
+
 }
