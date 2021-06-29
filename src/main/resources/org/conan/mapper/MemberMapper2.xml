@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.conan.mapper.MemberMapper2">
+<insert id="register">
+insert into member values(#{id},#{pwd},#{email})
+</insert>
+<select id="login" resultType="org.conan.domain.MemberVO2">
+select  id,pwd,email from member where  id = #{id} and pwd= #{pwd}
+</select>
+<select id="Idcheck" resultType="int">
+select count(*) from member where id = #{id}
+</select>
+<update id="update">
+update member set pwd = #{pwd} , email=#{email} where id=#{id}
+
+</update>
+</mapper>
