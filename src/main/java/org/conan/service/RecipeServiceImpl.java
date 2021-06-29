@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.conan.domain.BoardAttachVO;
 import org.conan.domain.Criteria;
+import org.conan.domain.IngreVO;
+import org.conan.domain.ProceVO;
 import org.conan.domain.RecipeVO;
 import org.conan.mapper.BoardAttachMapper;
 import org.conan.mapper.RecipeMapper;
@@ -39,9 +41,9 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public RecipeVO get(Long bno) {
-		log.info("get........"+bno);
-		return mapper.read(bno);
+	public RecipeVO get(Long rid) {
+		log.info("get........"+rid);
+		return mapper.read(rid);
 	}
 	@Transactional
 	@Override
@@ -69,6 +71,17 @@ public class RecipeServiceImpl implements RecipeService {
 		log.info("getList.............................");
 		return mapper.getList();
 	}
+	@Override
+	public List<IngreVO> get1(Long rid) {
+		// TODO Auto-generated method stub
+		return mapper.read1(rid);
+	}
+	@Override
+	public List<ProceVO> get2(Long rid) {
+		// TODO Auto-generated method stub
+		return mapper.read2(rid);
+	}
+	
 	
 	/*
 	 * @Override public List<RecipeVO> getList(Criteria cri){
@@ -80,10 +93,11 @@ public class RecipeServiceImpl implements RecipeService {
 		log.info("get total count");
 		return mapper.getTotalCount(cri);
 	}
+	
 	@Override
-	public List<BoardAttachVO>getAttachList(Long bno){
-		log.info("get Attach list by bno" + bno);
-		return attachMapper.findByBno(bno);
+	public List<BoardAttachVO>getAttachList(Long rid){
+		log.info("get Attach list by bno" + rid);
+		return attachMapper.findByBno(rid);
 	}
 	@Transactional
 	@Override
