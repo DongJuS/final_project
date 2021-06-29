@@ -189,9 +189,6 @@ opacity: 0.9;
                   
                   
                   var replyer = null;
-                  <sec:authorize access="isAuthenticated()">
-					replyer='<sec:authentication property="principal.username"/>';
-					</sec:authorize>
 					  var csrfHeaderName="${_csrf.headerName}";
 				      var csrfTokenValue="${_csrf.token}";
                   $("#addReplyBtn").on("click",function(e){
@@ -384,6 +381,9 @@ opacity: 0.9;
                   $('.bigPictureWrapper').css('display','flex').show()
                   $('.bigPicture').html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%',height:'100%'},1000)
                }
+               
+  
+
 </script>
 
 <!--       ------------------------------------------------------------------------------- -->
@@ -418,12 +418,19 @@ opacity: 0.9;
                <label class="bold">작성자</label><input class='form-control' name='writer'
                   value='<c:out value="${board.writer }"/>' readonly='readonly'>
             </div>
-      <sec:authentication property="principal" var="pinfo"/>
+     
+     
+     
+      
+      <%--
+		시큐리티 부분      
+       <sec:authentication property="principal" var="pinfo"/>
       <sec:authorize access="isAuthenticated()">
       <c:if test="${pinfo.username eq board.writer }">
       <button data-oper='modify' class="btn btn-warning">Modify</button>
       </c:if>
-      </sec:authorize>
+      </sec:authorize> 
+      --%>
             <button class='btn btn-primary' data-oper='list'>List</button>
             <form id='operForm' action='/board/modify' method='get'>
                <input type='hidden' id='bno' name='bno'
@@ -442,14 +449,12 @@ opacity: 0.9;
       </div>
       <!-- /.panel -->
  
- 
+
       <!-- /.panel-heading reply 영역시작 -->
       <div class="panel panel-default">
          <div class="panel-heading">
             <i class="fa fa-comments fa-fw"></i>Reply
-      <sec:authorize access="isAuthenticated()">
       <button id='addReplyBtn' class="btn btn-primary btn-xs pull-right">New Reply</button>
- 		</sec:authorize>  
          </div>
          <div class="panel-body">
             <ul class="chat">

@@ -8,14 +8,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.conan.domain.BoardAttachVO;
 import org.conan.domain.BoardVO;
 import org.conan.domain.Criteria;
+import org.conan.domain.IngreVO;
 import org.conan.domain.PageDTO;
 import org.conan.service.BoardService;
 import org.conan.service.BoardService2;
+import org.conan.service.LikeService;
 import org.conan.service.RecipeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,6 +45,7 @@ public class BoardController {
 	private BoardService service;
 	private BoardService2 service2;
 	private RecipeService Re_service;
+	private LikeService service3;
 	
 	@GetMapping("/list") 
 	public void list(Criteria cri, Model model) {
@@ -192,6 +196,56 @@ if(board.getAttachList()!=null) {
         return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
     }
 
+
+	
+    @RequestMapping(value = "/read", method = RequestMethod.GET)
+    public void read(@RequestParam("Rid") int Rid, Model model,
+                   
+                     @ModelAttribute("category") String category,
+                     HttpServletRequest httpRequest) throws Exception {
+
+//        service.increaseViewcnt(Rid, category);
+//
+//        model.addAttribute(service.readBoard(Rid, category));
+
+        int userid = ((IngreVO) httpRequest.getSession().getAttribute("login")).getT_id();
+
+        IngreVO vo = new IngreVO();
+        vo.setRid(Rid);
+        vo.setT_id(userid);
+
+        int boardlike = service3.getBoardLike(vo);
+        System.out.println(boardlike);
+
+        model.addAttribute("heart",boardlike);
+    }
+
+   @ResponseBody
+    @RequestMapping(value = "/heart", method = RequestMethod.POST, produces = "application/json")
+    public int heart(HttpServletRequest httpRequest) throws Exception {
+
+        int heart = Integer.parseInt(httpRequest.getParameter("heart"));
+        int boardId = Integer.parseInt(httpRequest.getParameter("Rid"));
+        int userid = ((IngreVO) httpRequest.getSession().getAttribute("login")).getT_id();
+
+        IngreVO boardLikeVO = new IngreVO();
+
+        boardLikeVO.setRid(boardId);
+        boardLikeVO.setT_id(userid);
+
+        System.out.println(heart);
+
+        if(heart >= 1) {
+            service3.deleteBoardLike(boardLikeVO);
+            heart=0;
+        } else {
+            service3.insertBoardLike(boardLikeVO);
+            heart=1;
+        }
+
+        return heart;
+
+    }
 
 	
 
